@@ -1,10 +1,41 @@
 echo "Install modman"
-sudo bash < <(curl -s -L https://raw.github.com/colinmollenhour/modman/master/modman-installer)
+
+if [ ! -d "$HOME/bin" ] ; then
+    mkdir $HOME/bin
+
+    if [ -f $HOME/.profile ]; then
+        tty -s && . $HOME/.profile
+
+        if [[ ":$PATH:" != *":$HOME/bin:"* ]]; then
+            echo -e '\nPATH="$HOME/bin:$PATH"' >> $HOME/.profile
+        fi
+    fi
+fi
+
+SRC="https://raw.githubusercontent.com/colinmollenhour/modman/master/modman"
+DEST="$HOME/bin/modman"
+
+# test if curl/wget is installed
+if hash curl 2>&- ; then
+    CMD="curl -s -L $SRC -o $DEST"
+elif hash wget 2>&- ; then
+    CMD="wget -q --no-check-certificate -O $DEST $SRC"
+else
+   echo "You need to have curl or wget installed."
+   exit 1
+fi
+
+$CMD
+
+chmod +x $DEST
+
+echo "Done. Modman installed in $HOME/bin/modman"
+
 sudo mv ~/bin/modman /usr/bin/modman
-sudo export PATH=/usr/bin/modman:$PATH
+export PATH=/usr/bin/modman:$PATH
 
 echo "Modman init"
-cd /vagrant_data/www
+cd /var/www/html
 modman init
 cd .modman
 sudo echo magento > .basedir
@@ -12,6 +43,4 @@ cd ../magento
 
 modman clone git://github.com/colinmollenhour/Cm_Cache_Backend_Redis.git
 
-sed -i '/session_save/redis_config.txt' /vagrant_data/www/magento/app/etc/local.xml
-
-echo "Done"
+echo "Update config"
