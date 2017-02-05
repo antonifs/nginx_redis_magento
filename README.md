@@ -4,6 +4,7 @@ Command of Nginx, PHP-FPM installation
 ```sh
 $ sudo sh nginx.sh
 ```
+What this script does is install Nginx, PHP-FPM and configure Nginx config so that match with Magento need, also configure php.ini 
 
 Command of Redis, Backend Cache installation
 - Install redis
