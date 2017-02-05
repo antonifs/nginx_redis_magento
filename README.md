@@ -20,6 +20,7 @@ Command of Redis, Backend Cache installation
 $ sudo sh redis.sh
 $ sudo sh backend_cache.sh
 $ sudo sh update_config.sh
+$ sudo sh session_cache.sh
 ```
 
 ## Monitor redis activities
