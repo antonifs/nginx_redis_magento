@@ -12,6 +12,9 @@ Command of Redis, Backend Cache installation
 - 6379 -> Instance of Magento backend cache
 - 6380 -> Instance of Magento session cache
 - 6381 -> Instance of magento full page chache
+- Install modman 
+- Install and configure redis backend cache 
+
 ```sh
 $ sudo sh redis.sh
 $ sudo sh backend_cache.sh
