@@ -21,8 +21,23 @@ $ sudo sh backend_cache.sh
 ```
 
 ## Monitor redis activities
+### Magento Backend Cache
 ```sh
 $ telnet localhost 6379
+then type 'monitor'
+to end it type 'quit'
+```
+
+### Magento Session Cache
+```sh
+$ telnet localhost 6380
+then type 'monitor'
+to end it type 'quit'
+```
+
+### Magento Full Page Cache
+```sh
+$ telnet localhost 6381
 then type 'monitor'
 to end it type 'quit'
 ```
