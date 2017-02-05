@@ -20,5 +20,14 @@ $ sudo sh redis.sh
 $ sudo sh backend_cache.sh
 ```
 
+## Monitor redis activities
+```sh
+$ telnet localhost 6379
+then type 'monitor'
+to end it type quit
+```
 
-
+To flush cache
+```sh
+$ redis-cli fushall
+```
